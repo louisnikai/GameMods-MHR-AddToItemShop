@@ -134,12 +134,30 @@ local function __TS__SparseArrayNew(...)
     return sparseArray
 end
 
+local function __TS__SparseArrayFind(sparseArray, itemId)
+    local result = nil
+
+    if type(sparseArray) == "table" then
+        for ____, item in ipairs(sparseArray) do
+            if item._Id == itemId then
+                result = item
+                break
+            end
+        end
+    end
+
+    return result
+end
+
 local function __TS__SparseArrayPush(sparseArray, ...)
     local args = {...}
     local argsLen = select("#", ...)
     local listLen = sparseArray.sparseLength
     for i = 1, argsLen do
-        sparseArray[listLen + i] = args[i]
+        local matchedItem = __TS__SparseArrayFind(sparseArray, args[i]._Id)
+        if matchedItem == nil then
+            sparseArray[listLen + i] = args[i]
+        end
     end
     sparseArray.sparseLength = listLen + argsLen
 end
@@ -212,8 +230,11 @@ local function addItems(self, ____self)
         ITEM_LIST,
         function(____, n) return tonumber(n, 16) end
     )) do
-        data[#data + 1] = create_item(nil, id, count)
-        count = count + 1
+        local matchedItem = __TS__SparseArrayFind(data, id)
+        if matchedItem == nil then
+            data[#data + 1] = create_item(nil, id, count)
+            count = count + 1
+        end
     end
     local ____self__DisplayData_3 = ____self._DisplayData
     local ____create_array_2 = create_array
