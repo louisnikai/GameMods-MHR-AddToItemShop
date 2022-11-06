@@ -332,6 +332,47 @@ local arr_fishs = {
     "04100312"
 }
 
+local arr_specialItems = {
+    --铠玉
+    "04100095",
+    --上铠玉
+    "04100096",
+    --尖铠玉
+    "04100097",
+    --坚铠玉
+    "04100409",
+    --重铠玉
+    "0410040A",
+    --王铠玉
+    "04100AF8",
+    --水光原珠
+    "0410040B",
+    --修罗原珠
+    "0410040C",
+    --琉璃原珠
+    "0410040D",
+    --金刚原珠
+    "04100AF5",
+    --明王原珠
+    "04100AF6",
+    --怪异原珠
+    "04100AF7",
+    --特制团子卷
+    "0410007C",
+    --商人橡子
+    "04100411",
+    --领悟橡子
+    "041007D1",
+    --药用神秘油
+    "041007D5",
+    --浓稠神秘油
+    "041007D4",
+    --特浓神秘油
+    "041007D3",
+    --迅炼丹
+    "041007D2"
+}
+
 local arr_result = {}
 __TS__ArrayPush(arr_result, table.unpack(arr_medicines))
 __TS__ArrayPush(arr_result, table.unpack(arr_auxItems))
@@ -339,4 +380,5 @@ __TS__ArrayPush(arr_result, table.unpack(arr_materials))
 __TS__ArrayPush(arr_result, table.unpack(arr_ammos))
 __TS__ArrayPush(arr_result, table.unpack(arr_bottles))
 __TS__ArrayPush(arr_result, table.unpack(arr_fishs))
+__TS__ArrayPush(arr_result, table.unpack(arr_specialItems))
 return arr_result
