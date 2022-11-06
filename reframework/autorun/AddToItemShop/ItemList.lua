@@ -1,5 +1,32 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-return {
+local function __TS__ArrayFind(array, hexId)
+    local result = nil
+
+    if type(array) == "table" then
+        for ____, item in ipairs(array) do
+            if item == hexId then
+                result = item
+                break
+            end
+        end
+    end
+
+    return result
+end
+
+local function __TS__ArrayPush(array, ...)
+    local args = {...}
+
+    for ____, arg in ipairs(args) do
+        local matchedItem = __TS__ArrayFind(array, arg)
+        if matchedItem == nil then
+            array[#array + 1] = arg
+        end
+    end
+end
+
+--[药品]
+local arr_medicines = {
     --回复药
     "04100006",
     --回复药G
@@ -53,7 +80,11 @@ return {
     --鬼人粉尘
     "041001E0",
     --硬化粉尘
-    "041001E5",
+    "041001E5"
+}
+
+--[辅助道具]
+local arr_auxItems = {
     --闪光球
     "041000A3",
     --音爆球
@@ -83,16 +114,99 @@ return {
     --落穴陷阱
     "0410007B",
     --麻痹陷阱
-    "04100004",
-    --刺身鱼
-    "041001D6",
-    --烤熟的鱼
-    "041001D5",
-    --磨刀鲹鱼
-    "041001F3",
-    --大磨刀鲹鱼
-    "0410030E",
+    "04100004"
+}
 
+--[素材]
+local arr_materials = {
+    --炸药
+    "041002D7",
+    --小木桶
+    "04100018",
+    --大木桶
+    "04100019",
+    --常春藤叶
+    "041002BF",
+    --蜘蛛网
+    "041002D6",
+    --网子
+    "041003D9",
+    --陷阱工具
+    "0410001A",
+    --增强剂
+    "041003D8",
+    --蜂蜜
+    "0410007D",
+    --药草
+    "04100080",
+    --解毒草
+    "041001DA",
+    --火药草
+    "041002BE",
+    --流水草
+    "041002C2",
+    --霜降草
+    "041002C1",
+    --眠草
+    "041002C0",
+    --落阳草
+    "041002C3",
+    --落阳草的花
+    "041002C4",
+    --木天蓼
+    "041002C5",
+    --蓝蘑菇
+    "0410007E",
+    --曼陀罗
+    "041002B2",
+    --硝化伞菇
+    "041002AE",
+    --毒菇
+    "041002B0",
+    --麻痹菇
+    "041002AF",
+    --心跳加速菇
+    "041002B1",
+    --苦虫
+    "041002BB",
+    --不死虫
+    "0410007F",
+    --雷光虫
+    "041002BD",
+    --光虫
+    "041002BC",
+    --怪物的粪
+    "04100412",
+    --烟果实
+    "041002C6",
+    --贯穿果实
+    "04100082",
+    --针果实
+    "041002C9",
+    --空心果实
+    "041002C8",
+    --爆裂果实
+    "041002CB",
+    --扩散果实
+    "041002CA",
+    --屠龙果实
+    "041002C7",
+    --斩裂果实
+    "041002CD",
+    --龙击果实
+    "041002CC",
+    --LV2火药粉
+    "041003DA",
+    --着火果实
+    "041003E2",
+    --LV3火药粉
+    "041003DB",
+    --发火果实
+    "041003E1"
+}
+
+--[弹药]
+local arr_ammos = {
     --LV2通常弹
     "0410001E",
     --LV3通常弹
@@ -176,7 +290,11 @@ return {
     --硬化弹
     "0410009C",
     --捕获用麻醉弹
-    "04100039",
+    "04100039"
+}
+
+--[瓶]
+local arr_bottles = {
     --强击瓶
     "0410003A",
     --毒瓶
@@ -190,3 +308,35 @@ return {
     --减气瓶
     "04100041"
 }
+
+local arr_fishs = {
+    --刺身鱼
+    "041001D6",
+    --烤熟的鱼
+    "041001D5",
+    --磨刀鲹鱼
+    "041001F3",
+    --大磨刀鲹鱼
+    "0410030E",
+    --扩散金鱼
+    "04100313",
+    --炸裂沙丁鱼
+    "04100367",
+    --着火鲣鱼
+    "0410030F",
+    --大着火鲣鱼
+    "04100310",
+    --发火旗鱼
+    "04100311",
+    --大发火旗鱼
+    "04100312"
+}
+
+local arr_result = {}
+__TS__ArrayPush(arr_result, table.unpack(arr_medicines))
+__TS__ArrayPush(arr_result, table.unpack(arr_auxItems))
+__TS__ArrayPush(arr_result, table.unpack(arr_materials))
+__TS__ArrayPush(arr_result, table.unpack(arr_ammos))
+__TS__ArrayPush(arr_result, table.unpack(arr_bottles))
+__TS__ArrayPush(arr_result, table.unpack(arr_fishs))
+return arr_result
